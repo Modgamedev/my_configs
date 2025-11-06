@@ -1,14 +1,14 @@
-# == Classic ==
-# This is a shorthand to override some of the options to be backwards compatible
-# with `ls`. It affects the "color"->"when", "sorting"->"dir-grouping", "date"
-# and "icons"->"when" options.
-# Possible values: false, true
+# == Классический ==
+# Это упрощённый способ переопределить некоторые опции для обратной совместимости
+# с `ls`. Влияет на опции "color"->"when", "sorting"->"dir-grouping", "date"
+# и "icons"->"when".
+# Возможные значения: false, true
 classic: false
 
-# == Blocks ==
-# This specifies the columns and their order when using the long and the tree
-# layout.
-# Possible values: permission, user, group, context, size, date, name, inode, links, git
+# == Колонки ==
+# Определяет, какие колонки и в каком порядке использовать в длинном и древовидном
+# представлении.
+# Возможные значения: permission, user, group, context, size, date, name, inode, links, git
 blocks:
   - permission
   - user
@@ -17,132 +17,130 @@ blocks:
   - date
   - name
 
-# == Color ==
-# This has various color options. (Will be expanded in the future.)
+# == Цвет ==
+# Настройки цвета. (Будет расширено в будущем.)
 color:
-  # When to colorize the output.
-  # When "classic" is set, this is set to "never".
-  # Possible values: never, auto, always
+  # Когда окрашивать вывод.
+  # Если "classic" установлен, будет "never".
+  # Возможные значения: never, auto, always
   when: auto
-  # How to colorize the output.
-  # When "classic" is set, this is set to "no-color".
-  # Possible values: default, custom
-  # When "custom" is set, lsd will look in the config directory for `colors.yaml`.
+  # Как окрашивать вывод.
+  # Если "classic" установлен, будет "no-color".
+  # Возможные значения: default, custom
+  # Если "custom", lsd будет искать colors.yaml в директории конфигурации.
   theme: default
 
-# == Date ==
-# This specifies the date format for the date column. The freeform format
-# accepts a strftime like string.
-# When "classic" is set, this is set to "date".
-# Possible values: date, locale, relative, '+<date_format>'
-# `date_format` will be a `strftime` formatted value. e.g. `date: '+%d %b %y %X'` will give you a date like this: 17 Jun 21 20:14:55
+# == Дата ==
+# Определяет формат даты для колонки даты. Формат задаётся как strftime.
+# Если "classic" установлен, будет "date".
+# Возможные значения: date, locale, relative, '+<date_format>'
+# `date_format` — это формат strftime, например '+%d %b %y %X' даст: 17 Jun 21 20:14:55
 date: date
 
-# == Dereference ==
-# Whether to dereference symbolic links.
-# Possible values: false, true
+# == Следовать ссылкам ==
+# Следовать ли символическим ссылкам.
+# Возможные значения: false, true
 dereference: false
 
-# == Display ==
-# What items to display. Do not specify this for the default behavior.
-# Possible values: all, almost-all, directory-only
+# == Отображение ==
+# Какие элементы показывать. Не указывайте для поведения по умолчанию.
+# Возможные значения: all, almost-all, directory-only
 # display: all
 
-# == Icons ==
+# == Иконки ==
 icons:
-  # When to use icons.
-  # When "classic" is set, this is set to "never".
-  # Possible values: always, auto, never
+  # Когда использовать иконки.
+  # Если "classic" установлен, будет "never".
+  # Возможные значения: always, auto, never
   when: auto
-  # Which icon theme to use.
-  # Possible values: fancy, unicode
+  # Какую тему иконок использовать.
+  # Возможные значения: fancy, unicode
   theme: fancy
-  # Separator between icon and the name
-  # Default to 1 space
+  # Разделитель между иконкой и именем
+  # По умолчанию — один пробел
   separator: " "
 
-# == Ignore Globs ==
-# A list of globs to ignore when listing.
+# == Игнорируемые шаблоны ==
+# Список шаблонов, которые нужно игнорировать при выводе.
 # ignore-globs:
 #   - .git
 
-# == Indicators ==
-# Whether to add indicator characters to certain listed files.
-# Possible values: false, true
+# == Индикаторы ==
+# Добавлять ли специальные символы к определённым файлам.
+# Возможные значения: false, true
 indicators: false
 
-# == Layout ==
-# Which layout to use. "oneline" might be a bit confusing here and should be
-# called "one-per-line". It might be changed in the future.
-# Possible values: grid, tree, oneline
+# == Макет ==
+# Какой макет использовать. "oneline" может быть немного запутанным, возможно,
+# будет переименован в "one-per-line".
+# Возможные значения: grid, tree, oneline
 layout: grid
 
-# == Recursion ==
+# == Рекурсия ==
 recursion:
-  # Whether to enable recursion.
-  # Possible values: false, true
+  # Включить рекурсию или нет.
+  # Возможные значения: false, true
   enabled: false
-  # How deep the recursion should go. This has to be a positive integer. Leave
-  # it unspecified for (virtually) infinite.
+  # На какую глубину рекурсировать. Должно быть положительным числом. 
+  # Если не указано — (практически) бесконечно.
   # depth: 3
 
-# == Size ==
-# Specifies the format of the size column.
-# Possible values: default, short, bytes
+# == Размер ==
+# Формат колонки размера.
+# Возможные значения: default, short, bytes
 size: default
 
-# == Permission ==
-# Specify the format of the permission column
-# Possible value: rwx, octal, attributes (windows only), disable
+# == Права ==
+# Формат колонки прав доступа
+# Возможные значения: rwx, octal, attributes (только Windows), disable
 # permission: rwx
 
-# == Sorting ==
+# == Сортировка ==
 sorting:
-  # Specify what to sort by.
-  # Possible values: extension, name, time, size, version
+  # По чему сортировать.
+  # Возможные значения: extension, name, time, size, version
   column: name
-  # Whether to reverse the sorting.
-  # Possible values: false, true
+  # Обратить порядок сортировки.
+  # Возможные значения: false, true
   reverse: false
-  # Whether to group directories together and where.
-  # When "classic" is set, this is set to "none".
-  # Possible values: first, last, none
+  # Группировать ли директории и где.
+  # Если "classic" установлен, будет "none".
+  # Возможные значения: first, last, none
   dir-grouping: none
 
-# == No Symlink ==
-# Whether to omit showing symlink targets
-# Possible values: false, true
+# == Без символических ссылок ==
+# Пропускать ли отображение целей символических ссылок
+# Возможные значения: false, true
 no-symlink: false
 
-# == Total size ==
-# Whether to display the total size of directories.
-# Possible values: false, true
+# == Общий размер ==
+# Показывать ли общий размер директорий.
+# Возможные значения: false, true
 total-size: false
 
-# == Hyperlink ==
-# Attach hyperlink to filenames
-# Possible values: always, auto, never
+# == Гиперссылка ==
+# Добавлять гиперссылку к именам файлов
+# Возможные значения: always, auto, never
 hyperlink: never
 
-# == Symlink arrow ==
-# Specifies how the symlink arrow display, chars in both ascii and utf8
+# == Стрелка для символьной ссылки ==
+# Как отображать стрелку для ссылок, символы в ASCII и UTF-8
 symlink-arrow: ⇒
 
-# == Header ==
-# Whether to display block headers.
-# Possible values: false, true
+# == Заголовок ==
+# Показывать ли заголовки колонок.
+# Возможные значения: false, true
 header: false
 
-# == Literal ==
-# Whether to show quotes on filenames.
-# Possible values: false, true
+# == Литерально ==
+# Показывать ли кавычки вокруг имён файлов.
+# Возможные значения: false, true
 literal: false
 
-# == Truncate owner ==
-# How to truncate the username and group names for a file if they exceed a certain
-# number of characters.
+# == Усечение владельца ==
+# Как усекать имена пользователя и группы, если они слишком длинные.
 truncate-owner:
-  # Number of characters to keep. By default, no truncation is done (empty value).
+  # Количество символов для оставления. По умолчанию усечения нет.
   after:
-  # String to be appended to a name if truncated.
+  # Строка, добавляемая при усечении
   marker: ""
