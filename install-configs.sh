@@ -19,8 +19,13 @@ echo "✅ Bash конфиги успешно установлены!"
 
 # Копируем конфиги lsd
 mkdir -p "$CONFIG_DIR/lsd" || { echo "❌ Не удалось создать папку $CONFIG_DIR/lsd"; exit 1; }
-cp -rf "$SRC_DIR/lsd/"* "$CONFIG_DIR/lsd/" || { echo "❌ Ошибка при копировании LSD конфигов"; exit 1; }
-echo "✅ LSD конфиги успешно установлены!"
+cp -rf "$SRC_DIR/lsd/"* "$CONFIG_DIR/lsd/" || { echo "❌ Ошибка при копировании lsd конфигов"; exit 1; }
+echo "✅ lsd конфиги успешно установлены!"
+
+# Копируем конфиг bat
+mkdir -p "$CONFIG_DIR/bat" || { echo "❌ Не удалось создать папку $CONFIG_DIR/bat"; exit 1; }
+cp -rf "$SRC_DIR/bat/"* "$CONFIG_DIR/bat/" || { echo "❌ Ошибка при копировании bat конфига"; exit 1; }
+echo "✅ bat конфиг успешно установлен!"
 
 # Возвращаемся в домашнюю директорию
 cd "$HOME" || { echo "❌ Не удалось перейти в домашнюю директорию"; exit 1; }
