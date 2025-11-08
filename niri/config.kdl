@@ -4,7 +4,7 @@ input {
     keyboard {
         xkb {
             layout "us,ru"                     // Список используемых раскладок клавиатуры
-            options "grp:caps_toggle"          // Как переключать (CapsLock)
+            options "grp:caps_toggle,ctrl:nocaps"   // Как переключать (CapsLock)
         }
     }
 
