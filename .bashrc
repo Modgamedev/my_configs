@@ -32,6 +32,7 @@ alias config-lsd-icons='nvim ~/.config/lsd/icons.yaml'
 alias config-lsd-colors='nvim ~/.config/lsd/colors.yaml'
 alias config-dircolors='nvim ~/.dircolors && eval $(dircolors ~/.dircolors)'
 alias config-foot='nvim ~/.config/foot/foot.ini'
+alias config-niri='nvim ~/.config/niri/config.kdl'
 
 
 # ======================================================
