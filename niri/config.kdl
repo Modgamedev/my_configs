@@ -13,7 +13,7 @@ input {
         // off                            // Полностью отключает тачпад.
         tap                               // Тап по поверхности тачпада как левый клик мыши
         dwt                               // Отключение тачпада, пока печатаешь
-        // dwtp                           // ?? Защита от случайного касания ладонью
+        dwtp                           // ?? Защита от случайного касания ладонью
         // drag false                     // Отключение перетаскивания окон
         // drag-lock                      // ??
         natural-scroll                    // Поведение скролла (если вниз скролл - страница вверх)
@@ -49,7 +49,7 @@ output "eDP-1" {
 
 // Позиционирование и размеры окон
 layout {
-    gaps 16 // Отступы вокруг окон, в логических пикселях.
+    gaps 20 // Отступы вокруг окон, в логических пикселях.
 
     // Как центрировать окна при переключении:
     // - "never" - никогда не центрировать. Столбец остаётся прижатым к левому или правому краю, даже если он частично за экраном.
@@ -59,9 +59,8 @@ layout {
 
     // Пресеты ширины колонок для переключения "switch-preset-column-width" (Mod+R)
 preset-column-widths {
-        proportion 0.33333      // 1/3 экрана
         proportion 0.5          // половина экрана
-        proportion 0.66667      // 2/3 экрана
+        proportion 1.0          // весь экран
 
         // fixed 1920  // Задаёт точную ширину колонки в логических пикселях
     }
@@ -138,10 +137,10 @@ preset-column-widths {
 
     // Внешние отступы окон 
     struts {
-        left 0
-        right 0
+        left -10
+        right -10
         top 0
-        bottom 0
+        bottom -10
     }
 }
 
@@ -169,71 +168,51 @@ animations {
     // slowdown 3.0    // Замедлить анимации в 3 раза (значение <1 — ускорение)
 }
 
-// Window rules let you adjust behavior for individual windows.
-// Find more information on the wiki:
-// https://yalter.github.io/niri/Configuration:-Window-Rules
-
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
-window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
-// Open the Firefox picture-in-picture player as floating by default.
-window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
-
-// Example: block out two password managers from screen capture.
-// (This example rule is commented out with a "/-" in front.)
+// Настройки для определенного окна (пример)
 /-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
-    block-out-from "screen-capture"
-
-    // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#   // К какому окну применить правила
+    default-column-width {}                        // Какие правила к нему применить
 }
 
-// Example: enable rounded corners for all windows.
-// (This example rule is commented out with a "/-" in front.)
+// Настройки для определенного окна (пример)
 /-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"    // Применить к Firefox с заголовком Picture-in-Picture
+    open-floating true                                         // Открыть его в плавающем режиме
 }
+
+// Настройки для определенного окна (пример). Запретить скриншот окон.
+    /-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#       // Применяется к окну KeePassXC
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#      // GNOME Secrets
+
+    block-out-from "screen-capture"                     // Запрещает niri показывать эти окна в скриншотах
+    // block-out-from "screencast"                      // Блокировать при записи, может в отдельное правило надо.
+}
+
+// Настройки правил для всех окон
+window-rule {
+    geometry-corner-radius 12      // Радиус скругления углов
+    clip-to-geometry true          // Включить или отключить для самого окна (не рамки)
+}
+
+// Настройки биндов клавиш
+// Формат: клавиши через плюс { действие; }
+// Mod — это Super (Win) или Alt, в зависимости от режима
+// Названия клавиш можно узнать через утилиту wev.
+// То что забиндено можно запустить и командой (niri msg action spawn foot)
 
 binds {
-    // Keys consist of modifiers separated by + signs, followed by an XKB key name
-    // in the end. To find an XKB name for a particular key, you may use a program
-    // like wev.
-    //
-    // "Mod" is a special modifier equal to Super when running on a TTY, and to Alt
-    // when running as a winit window.
-    //
-    // Most actions that you can bind here can also be invoked programmatically with
-    // `niri msg action do-something`.
-
-    // Mod-Shift-/, which is usually the same as Mod-?,
-    // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+// Бинды запуска программ. hotkey-overlay-title (текст в оверлее подсказки горячих клавиш)
+    Mod+T hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
-    // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
-    // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
-    // For example, this is a standard bind to toggle the screen reader (orca).
+// Использует spawn-sh для запуска команды через оболочку (sh).
+// Нужно, если команда сложная: несколько команд, пайпы, условия и т.п.
+// Вся команда передаётся как один аргумент и выполняется как `sh -c "команда"`.
+// Пример: переключение экранного диктора Orca.
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
@@ -251,19 +230,19 @@ binds {
     XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
     XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
 
-    // Example brightness key mappings for brightnessctl.
-    // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
-    // but you need to manually put each argument in separate "" quotes.
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+// Настройка клавиш яркости экрана (нужно установить brightnessctl)
+// allow-when-locked=true — работает даже на заблокированном экране
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }     // Увеличить на 10%
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }   // Уменьшить на 10%
 
-    // Open/close the Overview: a zoomed-out view of workspaces and windows.
-    // You can also move the mouse into the top-left hot corner,
-    // or do a four-finger swipe up on a touchpad.
+// Открывает или закрывает Overview (обзор всех рабочих окон)
+// Альтернативные способы - свайп 4 вверх, курсор в левый верхний угол
     Mod+O repeat=false { toggle-overview; }
 
+// Закрыть окно
     Mod+Q repeat=false { close-window; }
 
+// Переместить фокус на другое окно
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
@@ -273,6 +252,7 @@ binds {
     Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
 
+// Переместить само окно
     Mod+Ctrl+Left  { move-column-left; }
     Mod+Ctrl+Down  { move-window-down; }
     Mod+Ctrl+Up    { move-window-up; }
@@ -370,14 +350,7 @@ binds {
     // Mod+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
     // Mod+TouchpadScrollUp   { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
 
-    // You can refer to workspaces by index. However, keep in mind that
-    // niri is a dynamic workspace system, so these commands are kind of
-    // "best effort". Trying to refer to a workspace index bigger than
-    // the current workspace count will instead refer to the bottommost
-    // (empty) workspace.
-    //
-    // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
-    // will all refer to the 3rd workspace.
+// Переключение на рабочие пространства (вниз-вверх)
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
@@ -387,6 +360,8 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
+
+// Перемещение окна на другое рабочее пространство (вниз-вверх)
     Mod+Ctrl+1 { move-column-to-workspace 1; }
     Mod+Ctrl+2 { move-column-to-workspace 2; }
     Mod+Ctrl+3 { move-column-to-workspace 3; }
