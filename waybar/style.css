@@ -7,7 +7,6 @@
 window#waybar {
   background: #1e1e2e;
   border-bottom: 2px solid #89b4fa;
-  height: 40px;
 }
 
 #custom-left,
@@ -17,19 +16,19 @@ window#waybar {
 }
 
 /* Модули слева */
-#left {
+.left {
     color: #ff5555;        /* красный */
     font-weight: bold;
 }
 
 /* Центральные модули */
-#center {
+.center {
     color: #50fa7b;        /* зелёный */
     font-style: italic;
 }
 
 /* Модули справа */
-#right {
+.right {
     color: #6272a4;        /* синий */
     text-decoration: underline;
 }
