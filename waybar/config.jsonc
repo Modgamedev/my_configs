@@ -1,0 +1,18 @@
+{
+  "layer": "top",
+  "height": 40,
+
+  "modules-left": ["custom/left"],
+  "modules-center": ["custom/center"],
+  "modules-right": ["custom/right"],
+
+  "custom/left": {
+    "format": "🧭 LEFT"
+  },
+  "custom/center": {
+    "format": "⚙️  CENTER"
+  },
+  "custom/right": {
+    "format": "💡 RIGHT"
+  }
+}
