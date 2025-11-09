@@ -10,6 +10,7 @@ return {
   opts = {
     close_if_last_window = true, -- закрывать Neo-tree, если больше нет окон
     enable_git_status = true,    -- показывать git-статус
+    popup_border_style = "NC",   -- или "" чтобы использовать 'winborder'
     -- Настройки окна neo-tree
     window = {
       position = "left",
