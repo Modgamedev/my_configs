@@ -17,3 +17,5 @@ local g = vim.g
 
 opt.number = true                   -- показывать номера строк
 opt.relativenumber = true           -- относительные номера строк
+opt.cursorline = true               -- подсветка линии на которой курсор
+opt.shiftwidth = 4                  -- табуляция 4 пробела
