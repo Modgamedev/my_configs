@@ -5,3 +5,6 @@ require("config.options")
 
 -- 2. Горячие клавиши
 require("config.keymaps")
+
+-- 3. Менеджер плагинов Lazy
+require("config.lazy")
