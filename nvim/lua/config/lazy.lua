@@ -19,6 +19,6 @@ vim.opt.rtp:prepend(lazypath)
 -- Настройка lazy.nvim
 require("lazy").setup({
   spec = "plugins",                              -- Где ищет плагины
-  defaults = { lazy = true, version = false },   -- Ленивая загрузка, последние версии
+  defaults = { lazy = false, version = false },   -- Ленивая загрузка отключена, последние версии
   checker = { enabled = true },                  -- Автопроверка обновлений плагинов
 })
