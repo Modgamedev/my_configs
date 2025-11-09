@@ -1,65 +1,56 @@
 return {
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" }, -- Иконки (опционально)
-    config = function()
-      require('lualine').setup {
-        -- Общие настройки Lualine
-        options = {
-          icons_enabled = true,                      -- Включить иконки
-          theme = 'auto',                            -- Автоматическая тема
-          component_separators = { left = '', right = '' }, -- Разделители компонентов
-          section_separators = { left = '', right = '' },   -- Разделители секций
-          disabled_filetypes = {                     -- Не показывать в этих типах буферов
-            statusline = {},
-            winbar = {},
-          },
-          ignore_focus = {},                         -- Игнорируемые окна
-          always_divide_middle = true,               -- Разделять секции по центру
-          always_show_tabline = true,                -- Всегда показывать таблайн (вкладки)
-          globalstatus = false,                      -- Отдельная статусная строка для каждого окна
-          refresh = {                                -- Частота обновления
-            statusline = 1000,
-            tabline = 1000,
-            winbar = 1000,
-            refresh_time = 16,                       -- ~60 FPS
-            events = {                               -- События для обновления
-              'WinEnter', 'BufEnter', 'BufWritePost', 'SessionLoadPost',
-              'FileChangedShellPost', 'VimResized', 'Filetype',
-              'CursorMoved', 'CursorMovedI', 'ModeChanged',
-            },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    -- Настройки Lualine
+    opts = {
+      -- Общие настройки
+      options = {
+        icons_enabled = true,         -- Показывать иконки
+        theme = 'auto',               -- Тема для строки статуса
+        component_separators = { left = '', right = '' },     -- Разделители между элементами внутри одной секции
+        section_separators = { left = '', right = '' },       -- Разделители между секциями
+        disabled_filetypes = { statusline = {}, winbar = {} },  -- В каких буферах не показывать statusline или winbar
+        ignore_focus = {},
+        always_divide_middle = true,    -- Делить статусную строку по центру (разделение на левую и правую часть)
+        always_show_tabline = false,
+        globalstatus = true,            -- Использовать одну глобальную строку статуса для всех окон
+        refresh = {
+          statusline = 1000,
+          tabline = 1000,
+          winbar = 1000,
+          refresh_time = 16,
+          events = {
+            'WinEnter', 'BufEnter', 'BufWritePost', 'SessionLoadPost',
+            'FileChangedShellPost', 'VimResized', 'Filetype',
+            'CursorMoved', 'CursorMovedI', 'ModeChanged',
           },
         },
-
-        -- Основные секции статусной строки
-        sections = {
-          lualine_a = { 'mode' },                    -- Текущий режим (Normal/Insert и т.д.)
-          lualine_b = { 'branch', 'diff', 'diagnostics' }, -- Git-ветка, изменения, диагностика
-          lualine_c = { 'filename' },                -- Имя файла
-          lualine_x = { 'encoding', 'fileformat', 'filetype' }, -- Кодировка, формат, тип файла
-          lualine_y = { 'progress' },                -- Прогресс по файлу
-          lualine_z = { 'location' },                -- Позиция курсора
-        },
-
-        -- Настройки для неактивных окон
-        inactive_sections = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = { 'filename' },
-          lualine_x = { 'location' },
-          lualine_y = {},
-          lualine_z = {},
-        },
-
-        -- Таблайн (строка вкладок)
-        tabline = {},
-        -- Винбар (строка заголовка окна)
-        winbar = {},
-        -- Винбар для неактивных окон
-        inactive_winbar = {},
-        -- Расширения для интеграции с другими плагинами
-        extensions = {},
-      }
-    end,
+      },
+      -- Содержание в статусе для активного окна
+      sections = {
+        lualine_a = { 'mode' },            -- самая левая секция
+        lualine_b = { 'branch' },          -- следующая левая секция
+        lualine_c = { 'diagnostics' },     -- центральная левая секция
+        lualine_x = { 'filetype' },        -- центральная правая секция
+        lualine_y = {},                    -- следующая правая секция
+        lualine_z = {},                    -- самая правая секция
+      },
+      -- Содержание в статусе для НЕактивного окна
+      inactive_sections = {
+        lualine_a = {},                    -- самая левая секция
+        lualine_b = {},                    -- следующая левая секция
+        lualine_c = {},                    -- центральная левая секция
+        lualine_x = {},                    -- центральная правая секция
+        lualine_y = {},                    -- следующая правая секция
+        lualine_z = {},                    -- самая правая секция
+      },
+      tabline = {},
+      winbar = {
+          lualine_c = { 'filename' },      -- показывать имя файла в верхней части окна
+      },
+      inactive_winbar = {},
+      extensions = {},
+    },
   },
 }
