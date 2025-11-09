@@ -42,6 +42,11 @@ mkdir -p "$CONFIG_DIR/nvim" || { echo "❌ Не удалось создать п
 cp -rf "$SRC_DIR/nvim/"* "$CONFIG_DIR/nvim/" || { echo "❌ Ошибка при копировании nvim конфигов"; exit 1; }
 echo "✅ nvim конфиги успешно установлены!"
 
+# Копируем конфиги waybar
+mkdir -p "$CONFIG_DIR/waybar" || { echo "❌ Не удалось создать папку $CONFIG_DIR/waybar"; exit 1; }
+cp -rf "$SRC_DIR/waybar/"* "$CONFIG_DIR/waybar/" || { echo "❌ Ошибка при копировании waybar конфигов"; exit 1; }
+echo "✅ waybar конфиги успешно установлены!"
+
 # Возвращаемся в домашнюю директорию
 cd "$HOME" || { echo "❌ Не удалось перейти в домашнюю директорию"; exit 1; }
 
