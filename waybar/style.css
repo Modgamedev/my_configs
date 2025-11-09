@@ -15,3 +15,22 @@ window#waybar {
 #custom-right {
   padding: 0 20px;
 }
+
+/* Модули слева */
+#left {
+    color: #ff5555;        /* красный */
+    font-weight: bold;
+}
+
+/* Центральные модули */
+#center {
+    color: #50fa7b;        /* зелёный */
+    font-style: italic;
+}
+
+/* Модули справа */
+#right {
+    color: #6272a4;        /* синий */
+    text-decoration: underline;
+}
+
