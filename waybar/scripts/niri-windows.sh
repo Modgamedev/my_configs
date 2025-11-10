@@ -17,20 +17,20 @@ TEXT=$(echo "$WINDOWS_JSON" | jq -r --arg ws_id "$REAL_ID" --arg active_id "$ACT
     | select(.workspace_id == ($ws_id | tonumber))
     | {
         pos: (.layout.pos_in_scrolling_layout[0] // 9999),
-        app: (.app_id // ""),
-        id: (.id | tostring)
+        id: (.id | tostring),
+        icon: (
+          if .app_id == "firefox" then "🌎"
+          elif .app_id == "foot" then "💻"
+          elif .app_id == "code" or .app_id == "vscode" then "🧑‍💻"
+          elif .app_id == "mpv" then "🎬"
+          elif .app_id == "thunar" then ""
+          else "📄" end
+        )
       }
-    | # выбираем иконку
-      (if .app == "firefox" then "🌎"
-       elif .app == "foot" then "💻"
-       elif .app == "code" or .app == "vscode" then "🧑‍💻"
-       elif .app == "mpv" then "🎬"
-       elif .app == "thunar" then ""
-       else "📄" end) as $icon
-    | # формируем display с подсветкой активного окна
-      if .id == $active_id then "<span class=\"active\">\($icon)</span>" else $icon end
+    | . + {display: (if .id == $active_id then "<span class=\"active\">\(.icon)</span>" else .icon end)}
   ]
   | sort_by(.pos)
+  | map(.display)
   | join("  ")
 ')
 
