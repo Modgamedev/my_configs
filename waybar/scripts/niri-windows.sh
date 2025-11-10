@@ -19,15 +19,15 @@ TEXT=$(echo "$WINDOWS_JSON" | jq -r --arg ws_id "$REAL_ID" --arg active_id "$ACT
         pos: (.layout.pos_in_scrolling_layout[0] // 9999),
         id: (.id | tostring),
         icon: (
-          if .app_id == "firefox" then "🌎"
-          elif .app_id == "foot" then "💻"
+          if .app_id == "firefox" then ""
+          elif .app_id == "foot" then ""
           elif .app_id == "code" or .app_id == "vscode" then "🧑‍💻"
           elif .app_id == "mpv" then "🎬"
           elif .app_id == "thunar" then ""
           else "📄" end
         )
       }
-    | . + {display: (if .id == $active_id then "<span background=\"#4f78ff\" foreground=\"white\">\(.icon)</span>" else .icon end)}
+    | . + {display: (if .id == $active_id then "<span background=\"#88888880\" foreground=\"yellow\">\(.icon)</span>" else .icon end)}
   ]
   | sort_by(.pos)
   | map(.display)
