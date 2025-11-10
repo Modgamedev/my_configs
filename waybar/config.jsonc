@@ -59,10 +59,10 @@
 
 // Бар справа
 {
-    "layer": "top",
-    "position": "right",
-    "width": 40,
-    "height": 0,
+    "layer": "top",                          // Уровень наложения панели (поверх всех окон)
+    "position": "right",                     // Расположение панели (справа)
+    "width": 40,                             // Ширина панели (в пикселях)
+    "height": 0,                             // Высота панели (в пикселях)
     "margin": "0 0 0 0",
     "spacing": 6,
     "modules-left": ["custom/rightbar"],
