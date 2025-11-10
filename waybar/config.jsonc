@@ -12,8 +12,8 @@
 
 // Расстановка модулей в баре
   "modules-left": ["custom/left", "custom/left2", "custom/left3"],
-  "modules-center": ["custom/center", "niri/window", "custom/center3"],
-  "modules-right": ["custom/right", "custom/right2", "battery"],
+  "modules-center": ["custom/active-windows"],
+  "modules-right": ["battery"],
 
   // Тестовые модули слева
   "custom/left": {
@@ -28,29 +28,16 @@
   },
 
   // Тестовые модули по центру
-  "custom/center": {
-    "format": "⚙️ CENTER",
-    "name": "center"       // имя для CSS
-  },
-  "niri/window": {
-	"format": "{}",
-	"rewrite": {
-		"(.*) - Mozilla Firefox": "🌎 $1",
-		"(.*) - zsh": "> [$1]"
-	}
-  },
-  "custom/center3": {
-    "format": "🔹 CENTER3"
-  },
+"custom/active-windows": {
+    "exec": "~/.config/waybar/scripts/niri-windows.sh",
+    "return-type": "json",
+    "format": "{text}",
+    "signal": 10,
+    "tooltip": false,
+    "escape": false
+},
 
-  // Тестовые модули справа
-  "custom/right": {
-    "format": "💡 RIGHT",
-    "name": "right"       // имя для CSS
-  },
-  "custom/right2": {
-    "format": "🔥 RIGHT2"
-  },
+
 // Настройки батареи
   "battery": {
     "design-capacity": false,                      // Использовать текущую ёмкость, не проектную
