@@ -26,7 +26,8 @@ alias config-dircolors='nvim ~/.dircolors && eval $(dircolors ~/.dircolors)'
 alias config-lsd='nvim ~/.config/lsd/ .'
 alias config-foot='nvim ~/.config/foot/ .'
 alias config-niri='nvim ~/.config/niri/ .'
-alias config-niri='nvim ~/.config/waybar/ .'
+alias config-waybar='nvim ~/.config/waybar/ .'
+alias config-nvim='nvim ~/.config/nvim/ .'
 
 
 # ======================================================
