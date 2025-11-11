@@ -1,28 +1,52 @@
+* { all: unset; }
+
+/* Общее для всех */
 window#waybar {
-  background: black;
-  border-bottom: 1px solid #89b4fa;
+    font-family: "Iosevka NF Light";
+    font-size: 30px;
+    color: #E9E9E9;
+}
+
+/* Верхний бар */
+window#waybar.top {
+    background: rgba(32, 32, 32, 0.99);
+    border: 2px solid #575757;
+    border-top: none;
+    border-radius: 0 0 35px 35px;  /* верх-лево | верх-право | низ-право | низ-лево */
+}
+
+/* Правый бар */
+window#waybar.right {
+    background: rgba(82, 32, 32, 0.99);
+    border: 2px solid #575757;
+    border-right: none;
+    border-radius: 35px 0 0 35px;
+}
+
+/* Модули верхнего бара */
+window#waybar.top .modules-left {
+    padding-left: 20px;
+}
+
+window#waybar.top .modules-right {
+    padding-right: 20px;
+}
+
+/* Общее для тултипов */
+tooltip {
+    all: unset;
+    font-family: "Iosevka NF Light";
+    font-size: 30px;
+    background-color: rgb(44, 44, 44);
+    border: 2px solid #575757;
 }
 
 /* Иконки окон в рабочем пространстве */
 #custom-active-windows {
-  font-family: "Iosevka NFP";   /* Шрифт иконок */
-  font-size: 30px;              /* Размер иконок */
   color: #00FFFF;               /* Цвет неактивных окон */
 }
 
-#cpu,
-#disk,
-#memory,
-#temperature,
-#battery,
-#network,
-#language {
-    font-family: "Iosevka NF Light";
-    font-size: 30px;
-    color: white;
-    padding-right: 20px;
-}
-
+/* Цвета состояний */
 #cpu.medium,
 #battery.medium,
 #network.disconnected,
@@ -30,20 +54,10 @@ window#waybar {
 
 #cpu.high,
 #battery.high,
-#memory.high { color: orange; }
+#memory.high { color: blue; }
 
 #cpu.critical,
 #battery.high,
 #temperature.critical,
 #network.disabled,
 #memory.critical { color: red; }
-
-
-
-tooltip * {
-    background-color: #3b4252;
-    font-size: 40px;
-}
-
-
-
