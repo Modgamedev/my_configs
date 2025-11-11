@@ -1,0 +1,95 @@
+{
+// Модули
+"custom/active-windows": {
+    "exec": "~/.config/waybar/scripts/niri-windows.sh",
+    "return-type": "json",
+    "format": "{text}",
+    "signal": 10,
+    "tooltip": false,
+    "escape": false,
+    "markup": "pango"
+},
+"network": {
+    "format": "{icon}",
+    "format-alt": "{icon}  {bandwidthDownBytes}  {bandwidthUpBytes}", 
+    "format-wifi": "{icon}  {signalStrength}%",
+    "format-ethernet": "󰈀",
+    "format-linked": "󰤬",                // Когда нет ip
+    "format-disconnected": "󰤮",
+    "format-disabled": "󰤫",          // Интерфейс выключен
+    "format-icons": [
+        "󰤮",        // отключено
+        "󰤟",        // 0-25%    (слабый)
+        "󰤢",        // 25-50%   (средний)
+        "󰤥",        // 50-75%   (хороший)
+        "󰤨"         // 75-100%  (отличный)
+    ],
+    "interval": 30,
+    "tooltip": true,
+    "tooltip-format": "WiFi: {essid} ({frequency} GHz)\n\nИмя интерфейса: {ifname}\n󰩟  {ipaddr}\nШлюз: {gwaddr}\nМаска IPv4: {netmask}(/{cidr})\n\n  {bandwidthDownBytes}   {bandwidthUpBytes}",
+    "tooltip-format-wifi": "WiFi: {essid} ({frequency} GHz)\n\nИмя интерфейса: {ifname}\n󰩟  {ipaddr}\nШлюз: {gwaddr}\nМаска IPv4: {netmask}(/{cidr})\n\n  {bandwidthDownBytes}   {bandwidthUpBytes}",
+    "tooltip-format-disconnected": "WiFi disconnected",
+    "tooltip-format-disabled": "WiFi disabled"
+},
+"niri/language": {
+  "format": "{}",
+  "format-en": "EN",
+  "format-ru": "РУ"
+},
+// Показатель CPU
+"cpu": {
+    "interval": 10,
+    "format": "  {usage}%",
+      "states": {
+	"medium": 50,
+        "high": 70,
+        "critical": 90
+    },
+    "on-click": "",
+    "tooltip": false
+},
+// Показатель RAM
+"memory": {
+    "interval": 10,
+    "format": "  {percentage}%",
+    "states": {
+	"medium": 50,
+        "high": 70,
+        "critical": 90
+    },
+    "on-click": "",
+    "tooltip": true,
+    "tooltip-format": "Total RAM: {total} GiB\nUsed: {used} GiB\n\nTotal SWAP: {swapTotal} GiB\nUsed SWAP: {swapUsed} GiB"
+},
+// Показатели температур
+ "temperature": {
+    "interval": 10,
+    "thermal-zone": 22,
+    "critical-threshold": 70,
+    "format-critical": " {temperatureC}°C",
+    "format": " {temperatureC}°C"
+},
+"disk": {
+	"interval": 60,
+	"format": "󰋊 {specific_used:.0f}GB",
+	"format-alt": "󰋊 {percentage_used}%",
+	"unit": "GB",
+	"tooltip": true,
+	"tooltip-format": "Размер диска:            {specific_total:.1f}GB\nСвободно:         {specific_free:.1f}GB({percentage_free}%)\nИспользовано:        {specific_used:.1f}GB({percentage_used}%)"
+},
+// Показатели батареи
+  "battery": {
+    "design-capacity": false,                      // Использовать текущую ёмкость, не проектную
+    "format": "{icon}  {capacity}%",		   // Отображение: заряд в % и иконка
+    "format-alt": "{icon}  {power}W",
+    "format-charging": "󰚥 {capacity}%",
+    "states": {
+	"critical": 20,
+	"high": 35,
+	"medium": 50
+    },
+    "format-icons": ["", "", "", "", ""],     // Иконки батареи для разных уровней
+    "tooltip-format-charging": "До полной зарядки: {time}\nЗдоровье: {health}%\nЦиклов: {cycles}",
+    "tooltip-format-discharging": "Потребляет: {power}W\nОсталось работы: {time}\nЗдоровье: {health}%\nЦиклов: {cycles}"
+  }
+}
