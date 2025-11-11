@@ -31,10 +31,15 @@
     "tooltip-format-disconnected": "WiFi disconnected",
     "tooltip-format-disabled": "WiFi disabled"
 },
+
 "niri/language": {
-  "format": "{}",
-  "format-en": "EN",
-  "format-ru": "РУ"
+    "format": "{}",
+    "format-en": "en",
+    "format-ru": "ру",
+    "states": {
+	"en": "en",
+	"ru": "ru"
+    }
 },
 // Показатель CPU
 "cpu": {
@@ -82,13 +87,13 @@
     "design-capacity": false,                      // Использовать текущую ёмкость, не проектную
     "format": "{icon}  {capacity}%",		   // Отображение: заряд в % и иконка
     "format-alt": "{icon}  {power}W",
-    "format-charging": "󰚥 {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
     "states": {
-	"critical": 20,
+	"critical": 80,
 	"high": 35,
 	"medium": 50
     },
-    "format-icons": ["", "", "", "", ""],     // Иконки батареи для разных уровней
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],     // Иконки батареи для разных уровней
     "tooltip-format-charging": "До полной зарядки: {time}\nЗдоровье: {health}%\nЦиклов: {cycles}",
     "tooltip-format-discharging": "Потребляет: {power}W\nОсталось работы: {time}\nЗдоровье: {health}%\nЦиклов: {cycles}"
   }
