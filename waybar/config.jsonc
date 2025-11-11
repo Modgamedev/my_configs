@@ -1,8 +1,4 @@
 [
-  {
-    "include": ["~/.config/waybar/topbar/topbar.jsonc"]
-  },
-  {
-    "include": ["~/.config/waybar/rightbar/rightbar.jsonc"]
-  }
+  { "include": ["~/.config/waybar/topbar/topbar.jsonc"] },          // Подключаем конфигурацию верхней панели
+  { "include": ["~/.config/waybar/rightbar/rightbar.jsonc"] }       // Подключаем конфигурацию правой панели
 ]
