@@ -1,8 +1,8 @@
 [
   {
-    "include": ["~/.config/waybar/topbar.jsonc"]
+    "include": ["~/.config/waybar/topbar/topbar.jsonc"]
   },
   {
-    "include": ["~/.config/waybar/rightbar.jsonc"]
+    "include": ["~/.config/waybar/rightbar/rightbar.jsonc"]
   }
 ]
