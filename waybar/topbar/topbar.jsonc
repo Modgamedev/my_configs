@@ -1,0 +1,15 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 50,
+  "margin": "0 0 0 0",
+  "spacing": 0,
+  "reload_style_on_change": true,
+
+  // Подключаем модули верхнего бара
+  "include": ["~/.config/waybar/topbar/topbar_modules.jsonc"],
+
+  "modules-left": ["cpu", "memory", "temperature", "disk", "battery", "network"],
+  "modules-center": ["custom/active-windows"],
+  "modules-right": ["niri/language"]
+}
