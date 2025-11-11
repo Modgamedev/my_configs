@@ -4,14 +4,10 @@ PS1='\[\e[90m\][\A] \[\e[1;32m\]\u\[\e[0;36m\]@\h \[\e[1;33m\]\w\[\e[0;33m\] $ \
 # Загружает настройки цветов для ls/lsd из файла ~/.dircolors
 eval "$(dircolors -b ~/.dircolors)"
 
-# Включаем автоматический переход в директории при вводе их имени
-shopt -s autocd
 
 # ======================================================
 #                       АЛИАСЫ
 # ======================================================
-# Навигация
-alias ..='cd ..'
 
 # Цветной ls через lsd
 alias ls='lsd'
@@ -26,13 +22,11 @@ alias cat='bat'
 # Быстрый доступ к настройкам
 alias config-bashrc='nvim ~/.bashrc && source ~/.bashrc'
 alias config-bashprofile='nvim ~/.bash_profile && source ~/.bash_profile'
-alias config='cd ~/.config'
-alias config-lsd='nvim ~/.config/lsd/config.yaml'
-alias config-lsd-icons='nvim ~/.config/lsd/icons.yaml'
-alias config-lsd-colors='nvim ~/.config/lsd/colors.yaml'
 alias config-dircolors='nvim ~/.dircolors && eval $(dircolors ~/.dircolors)'
-alias config-foot='nvim ~/.config/foot/foot.ini'
-alias config-niri='nvim ~/.config/niri/config.kdl'
+alias config-lsd='nvim ~/.config/lsd/ .'
+alias config-foot='nvim ~/.config/foot/ .'
+alias config-niri='nvim ~/.config/niri/ .'
+alias config-niri='nvim ~/.config/waybar/ .'
 
 
 # ======================================================
