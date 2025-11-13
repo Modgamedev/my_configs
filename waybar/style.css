@@ -53,11 +53,10 @@ tooltip {
 #memory.medium { color: yellow; }
 
 #cpu.high,
-#battery.high,
 #memory.high { color: blue; }
 
 #cpu.critical,
-#battery.high,
+#battery.critical,
 #temperature.critical,
 #network.disabled,
-#memory.critical { color: red; }
+#memory.critical { color: #ff3b2f; }
